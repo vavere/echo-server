@@ -1,0 +1,20 @@
+kind: pipeline
+type: kubernetes
+name: en
+
+steps:
+- name: install
+  image: node:12-alpine
+  commands:
+  - npm install
+- name: docker
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: reg_username
+    password:
+      from_secret: reg_password
+    registry: reg.vavere.dev
+    repo: reg.vavere.dev/echo-server
+    auto_tag: true
+    force_tag: true
