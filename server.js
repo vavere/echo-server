@@ -2,9 +2,9 @@ const os = require('os');
 const express = require('express');
 
 // Constants
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const HOST = '0.0.0.0';
-const GREETING = 'Hello World!'
+const GREETING = process.env.GREETING || 'Hello World!';
 
 // App
 const app = express();
