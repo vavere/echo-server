@@ -8,9 +8,14 @@ const GREETING = process.env.GREETING || 'Hello World!';
 
 // App
 const app = express();
+app.set('view engine', 'ejs');
 app.use((req, res) => {
-  const msg = (`<p>${GREETING}</p><p>ip: ${req.ip}<br/>url: ${req.url}<br/>host: ${os.hostname()}</p>\n`);
-  res.send(msg);
+  res.render('index.ejs', {
+    greeting: GREETING,
+    ip: req.ip,
+    url: req.url,
+    host: os.hostname()
+  });
 });
 
 app.listen(PORT, HOST);
